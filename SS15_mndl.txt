@@ -1,0 +1,83 @@
+Unterschied Client-Server-FS-Architektur vs. Cluster-based-architektur
+	inkl. Skalierbarkeit?
+Phasen des MapReduce
+	mehrere Server bei Mapper und Reducer?
+Cloud Service Modelle
+	
+Zettel mit Itemsets -> frequent itemsets identifzieren (minsup = 3)
+Was ist Monotonicity?
+Association Rule ableiten (für confidence = 1)
+k-means erklären
+
+informations- vs. datenmanagement
+lazy distributed replication erklären (inkl. reconciliation)
+Projektfrage
+
+Cloud Deployment Modelle
+Sinn und Zweck von Combining, Shuffling und Reduce phase
+Funktionsweise von DHT (und bottlenecks)
+
+Clustering-sensitivity to outliers
+frequent itemsets apriori algo erklärne (mit abbruchkriterium)
+Association Rule -> support, conf und interest berechnen
+
+TPM malen
+centralized, physical ("true"), logical DIS
+One-Copy-Equivalence
+
+Schaaf: 1. client/Server FS vs. Cluster FS
+2. schematisch MapReduce, da ich combiner erwähnt kam zusatz wo der Combiner drinsteckt und vergleich zu shuffle/sort Phase: Combiner local am ende vom Mapper.
+3. SaaS, PaaS, IaaS nennen und kurz erläutern.
+Astrova: 1. Zettel mit (Web-)Graphen. Einer ok, einer mir daed end, einer mit spider trap. Erläutern und Probleme für rageRank.
+2. Dead End: Lösungsmöglichkeiten, also erst pR für Netz ohzne dead end, dann dead end ....
+3. hier. clustering, dendrogramm, ablauf, zusatzfrage ob abhängig von eucl. Raum? Nein.
+Koschel: 1. data management vs. information management
+2. lazy distribution + recoervy methoden; wollte bei mir unbedingt reconciliation hören, was ich aber nur umschrieben hatte.
+3. aufbau TPM anhand der Abbildung fl. 3.35. Die musste ich mir herleiten, er hatte da etwas Hilfe gegeben, so dass ich nach einiger Zeit alles zusammen hatte.
+
+-Was ist Centroid und Clusteroid?
+-Random Surfer Walk
+-Wirkung von initial Centroid
+-Map-Reduce-Phasen
+-Straggler
+-Rapid elasticity
+-One-Copy-Equivalence
+-Strong, Lazy, Centralized, Distributed
+-Arten von Distributed IS (DIS, true DIS, Logical DIS)
+
+centralized, physical ("true"), logical DIS
+One-Copy-Equivalence
+Semi-Joins erklären und wieso?
+
+Zettel mit Itemsets -> frequent itemsets identifzieren (minsup = 3) 
+	-> dann noch confidence und support für das ergebis
+Abbruchkriterien hierarchical und K-Means
+Surfer Walk? 
+
+Map Reduce Schritte zeichnen und erklären
+was ist Rapid elasticity?
+Projekt-Frage
+
+
+
+was ist Rapid elasticity?
+
+Phasen des MapReduce
+
+Projektfrage(Nenne Technologien, die im Paper waren;erkläre HOP und micro batching mit Spark)
+
+
+
+Clustering K-means(ähnlich zu Folie 49 Clustering) Frage, warum Clustering im gegebenen Beispiel nicht gut ist
+
+Apriori Algorithmus erklären und an einem Beispiel vormachen inkl. einer Regel bauen und Support, Confidence und Interest ausrechnen
+
+Dead Ends und Spider Traps an mehreren Webgraphen erkennen und erklären, was man dagegen tut
+
+
+
+Correctness of Fragmentation(Folie 21, zweite Koschel Vorlesung)
+
+lazy-single master replication erklären und zeichnen
+
+TP-Monitor aufzeichnen und erklären
