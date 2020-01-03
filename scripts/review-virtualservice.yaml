@@ -1,0 +1,45 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{},"creationTimestamp":null,"name":"vs-productpage","namespace":"default"},"spec":{"hosts":["productpage"],"http":[{"match":[{"headers":{"baggage-user-agent":{"regex":".*iPhone.*"}}}],"route":[{"destination":{"host":"reviews","subset":"version-v1"}}]},{"match":[{"headers":{"baggage-user-agent":{"regex":".*Android.*"}}}],"route":[{"destination":{"host":"reviews","subset":"version-v2"}}]}]}}
+  creationTimestamp: "2019-12-29T17:48:49Z"
+  generation: 8
+  name: reviews-virtualservice
+  namespace: default
+  resourceVersion: "1469119"
+  selfLink: /apis/networking.istio.io/v1alpha3/namespaces/default/virtualservices/vs-productpage
+  uid: 782a2ac1-2a63-11ea-9e3c-42010a800117
+spec:
+  hosts:
+  - reviews
+  http:
+  - match:
+    - headers:
+        user-agent:
+          regex: .*iPhone.*
+    route:
+    - destination:
+        host: reviews
+        subset: version-v1
+  - match:
+    - headers:
+        user-agent:
+          regex: .*Android.*
+    route:
+    - destination:
+        host: reviews
+        subset: version-v2
+  - match:
+    - headers:
+        user-agent:
+          regex: .*Windows.*
+    route:
+    - destination:
+        host: reviews
+        subset: version-v3
+  - route:
+    - destination:
+        host: reviews
+        subset: version-v1
