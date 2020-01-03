@@ -1,0 +1,10 @@
+version: '3'
+services:
+  ios:
+    build: ./ios
+    ports:
+      - 8081:80
+  android:
+    build: ./android
+    ports:
+      - 8082:80

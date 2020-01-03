@@ -1,0 +1,146 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+  labels:
+    istio-injection: enabled
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: demo
+  name: android-deployment
+  labels:
+    app: app
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+      os: android
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: app
+        os: android
+        version: v1
+    spec:
+      containers:
+      - name: android
+        image: us.gcr.io/vis-project-256911/android
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ios-deployment
+  namespace: demo
+  labels:
+    app: app
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+      os: ios
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: app
+        os: ios
+        version: v1
+    spec:
+      containers:
+      - name: ios
+        image: us.gcr.io/vis-project-256911/ios
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  namespace: demo
+  labels:
+    app: app
+    service: app
+spec:
+  type: ClusterIP
+  sessionAffinity: None
+  ports:
+  - port: 80
+    name: http
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: app
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: app-dr
+  namespace: demo
+spec:
+  host: app
+  subsets:
+  - name: android
+    labels:
+      os: android
+  - name: ios
+    labels:
+      os: ios
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: app
+  namespace: demo
+spec:
+  hosts:
+    - app
+  http:
+    - match:
+        - headers:
+            user-agent:
+              regex: .*iPhone.*
+      route:
+        - destination:
+            host: app
+            subset: ios
+    - match:
+        - headers:
+            user-agent:
+              regex: .*Android.*
+      route:
+        - destination:
+            host: app
+            subset: android
+    - route:
+        - destination:
+            host: app
+            subset: ios
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: app
+  namespace: demo
+spec:
+  hosts:
+  - 34.67.217.149
+  gateways:
+  - default/bookinfo-gateway
+  http:
+  - match: 
+    - uri:
+        prefix: /app
+    route:
+    - destination:
+        port:
+          number: 80
+        host: app
