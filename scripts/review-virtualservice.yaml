@@ -42,4 +42,4 @@ spec:
   - route:
     - destination:
         host: reviews
-        subset: version-v1
+        subset: version-v3
