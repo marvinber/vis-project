@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{},"name":"dr-reviews","namespace":"default"},"spec":{"host":"reviews","subsets":[{"labels":{"version":"v1"},"name":"version-v1"},{"labels":{"version":"v2"},"name":"version-v2"}]}}
+  creationTimestamp: "2019-12-29T16:26:14Z"
+  generation: 2
+  name: dr-reviews
+  namespace: default
+  resourceVersion: "337706"
+  selfLink: /apis/networking.istio.io/v1alpha3/namespaces/default/destinationrules/dr-reviews
+  uid: eef42744-2a57-11ea-9e3c-42010a800117
+spec:
+  host: reviews
+  subsets:
+  - labels:
+      version: v1
+    name: version-v1
+  - labels:
+      version: v2
+    name: version-v2
+  - labels:
+      version: v3
+    name: version-v3
